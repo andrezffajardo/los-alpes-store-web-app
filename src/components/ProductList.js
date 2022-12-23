@@ -1,7 +1,20 @@
-import React from 'react'
+import React from 'react';
+import {ProductCard} from './ProductCard';
+import { useProducts } from '../hooks/useProducts';
 
-export const ProductList = () => {
+export const ProductList= () => {
+
+  const {product} = useProducts();
+
   return (
-    <h1>Products Cards</h1>
-  )
+    <div className="row mx-3">
+      {
+        product.map( product => (
+        <div key={product.id} className="col-sm-3">
+          <ProductCard product={product}/>
+        </div>
+      ))
+      }
+    </div>
+  );
 }
