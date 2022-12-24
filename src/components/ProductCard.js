@@ -2,8 +2,7 @@ import React from 'react';
 import { useState } from "react";
 
 
-export const ProductCard = ({product}) => {
-
+export const ProductCard = ({product, deleteProduct}) => {
 
   const [showDescription, setShowDescription] = useState(false);
   const [showButton, setShowButton] = useState(false);
@@ -21,9 +20,12 @@ export const ProductCard = ({product}) => {
     setShowButton(false);
   };
 
-  const handleCardClick = () => {
-    setShowFullDetails(!showFullDetails);
+  const handleCardClick = (event) => {
+    if (event.target.className !== 'btn btn-danger') {
+      setShowFullDetails(!showFullDetails);
+    }
   }
+
 
   return (
     <div
@@ -37,16 +39,16 @@ export const ProductCard = ({product}) => {
           className="btn btn-danger"
           onMouseEnter={() => setShowButton(true)}
           onMouseLeave={() => setShowButton(false)}
+          onClick={() => deleteProduct(product.id)}
         >
           Detete Item
         </button>
       )}
       <img className="card-img-top" src={product.image} alt={product.name} />
-      <h2 className="card-title">{product.name}</h2>
-      <div className="price-description-container">
-        {/* Agregamos estilos para que el precio y el botón aparezcan al lado el uno del otro */}
-        <div className="price-button-container py-5">
-          <p className="card-text mr-3">{product.price}</p>
+      <h2 className="card-title fs-3 ps-2">{product.name}</h2>
+      <div className="price-description-container ps-2">
+        <div className="price-button-container">
+          <p className="card-text fs-4 mt-2">${product.price}</p>
         </div>
         {showDescription && (
           <div
@@ -62,9 +64,7 @@ export const ProductCard = ({product}) => {
         )}
       </div>
       {showFullDetails && (
-        <div>
           <button className="btn btn-primary">Edit</button>
-        </div>
       )}
     </div>
   );
