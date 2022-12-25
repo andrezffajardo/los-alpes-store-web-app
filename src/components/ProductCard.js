@@ -29,43 +29,56 @@ export const ProductCard = ({product, deleteProduct}) => {
 
   return (
     <div
-      className="card rounded shadow w-80 mt-5"
+      className="card w-auto"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleCardClick}
     >
-      {showButton && (
-        <button
-          className="btn btn-danger"
-          onMouseEnter={() => setShowButton(true)}
-          onMouseLeave={() => setShowButton(false)}
-          onClick={() => deleteProduct(product.id)}
-        >
-          Detete Item
-        </button>
-      )}
-      <img className="card-img-top" src={product.image} alt={product.name} />
-      <h2 className="card-title fs-3 ps-2">{product.name}</h2>
-      <div className="price-description-container ps-2">
-        <div className="price-button-container">
-          <p className="card-text fs-4 mt-2">${product.price}</p>
+      <div className="row g-0 align-items-center">
+        <div className="col-md-3">
+          <img src={product.image} alt={product.name}  className="img-fluid" />
         </div>
-        {showDescription && (
-          <div
-            className="description"
-          >
-            <p 
-              onMouseEnter={() => setShowDescription(true)}
-              onMouseLeave={() => setShowDescription(false)}
-              >
-              {product.description}
-            </p>
+        <div className="col-md-9 bg-secondary">
+          <div className="card-body ">
+            <div className="row g-0">
+              <div className="col-md-6 bg-success">
+                <h2 className="card-title fs-4 ps-2">{product.name}</h2>
+                <p className="card-text fs-6 ps-2">${product.price}</p>
+                  <div>
+                    {showButton && (
+                      <button
+                        className="btn btn-danger"
+                        onMouseEnter={() => setShowButton(true)}
+                        onMouseLeave={() => setShowButton(false)}
+                        onClick={() => deleteProduct(product.id)}
+                      >
+                        Detete Item
+                      </button>
+                    )}
+                  </div>
+              </div>
+              <div className="col-md-6 bg-warning">
+                {showDescription && (
+                <div
+                  className="description"
+                  onMouseEnter={() => setShowDescription(true)}
+                  onMouseLeave={() => setShowDescription(false)}
+                >
+                  <h3 className="card-description fs-4 ps-2">Description</h3>
+                  <p>
+                    {product.description}
+                  </p>
+                </div>
+                  )}
+              </div>
+            </div>
           </div>
-        )}
-      </div>
-      {showFullDetails && (
-          <button className="btn btn-primary">Edit</button>
-      )}
+        </div>
+              {showFullDetails && (
+                  <button className="btn btn-primary">Edit</button>
+              )}
+          </div>
+
     </div>
   );
 }

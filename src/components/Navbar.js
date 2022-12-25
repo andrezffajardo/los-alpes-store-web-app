@@ -6,7 +6,7 @@ export const Navbar = () => {
       <nav className="navbar bg-light">
         <div className="container-fluid">
           <div className="navbar-brand">
-            <div className="row align-items-center justify-content-center">
+            <div className="row align-items-center">
               <div className="col-sm-8">
                 <img src="/images/los-alpes-logo.png" alt="Logo" width="127" height="79" />
               </div>

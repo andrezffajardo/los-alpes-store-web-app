@@ -9,10 +9,10 @@ export const ProductList= () => {
   console.log(product);
 
   return (
-    <div className="row mx-3">
+    <div className="row justify-content-center pt-5">
       {
         product.map( product => (
-        <div key={product.id} className="col-sm-3">
+        <div  className="p-3" key={product.id} >
           <ProductCard product={product} deleteProduct={deleteProduct}/>
         </div>
       ))
