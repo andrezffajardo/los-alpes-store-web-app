@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Navbar} from './/components/Navbar';
 import {ProductList} from './/components/ProductList';
 import { useProducts } from './/hooks/useProducts';
 
@@ -9,7 +10,7 @@ export function App({onDelete}) {
 
   return (
     <>
-      <h1 className="text-center mt-3">Los Alpes Store - Product List</h1>
+      <Navbar/>
       <ProductList onDelete={deleteProduct} products={products} setProducts={setProducts}/>
     </>
   );

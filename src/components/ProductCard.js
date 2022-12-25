@@ -30,8 +30,8 @@ export const ProductCard = ({product, deleteProduct}) => {
   return (
     <div
       className="card rounded shadow w-80 mt-5"
-      onMouseOver={handleMouseEnter}
-      onMouseOut={handleMouseLeave}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       onClick={handleCardClick}
     >
       {showButton && (
