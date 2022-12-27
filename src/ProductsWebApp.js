@@ -1,24 +1,13 @@
-import React,{ useState, useEffect } from 'react';
-import axios from 'axios';
+import React,{ useState } from 'react';
 import Navbar from './/components/Navbar';
 import ProductList from './/components/ProductList';
+import useProductController from './/hooks/useProductController';
 
 
 const ProductsWebApp = () => {
 
-    const [ products, setProducts ] = useState([]);
     const [ search, setSearch ] = useState("");
-
-    const URL = 'https://6344456c242c1f347f82db0d.mockapi.io/api/v1/products/';
-
-    const fetchProduct = async () => {
-      try {
-        const response = await axios.get(URL);
-        setProducts(response.data)
-      } catch (error) {
-        console.error(error);
-      }
-    };
+    const { products, deleteProduct, editProduct } = useProductController();
 
     const searcher = (e) => {
       setSearch(e.target.value);
@@ -34,29 +23,6 @@ const ProductsWebApp = () => {
       )
     };
 
-    useEffect(() => {
-      fetchProduct()
-    }, []);
-
-
-    const deleteProduct = async id => {
-      try {
-        await axios.delete(`${URL}${id}`);
-        setProducts(products.filter(p => p.id !== id));
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    const editProduct = async (id, updatedProduct) => {
-      try {
-        await axios.put(`${URL}${id}`, updatedProduct);
-        setProducts(prevProduct => prevProduct.map(p => p.id === id ? updatedProduct : p));
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
 
   return (
     <div>
@@ -64,7 +30,7 @@ const ProductsWebApp = () => {
       <Navbar searcher={ searcher }/>
 
       {/* //ProductList component */}
-      <ProductList key={products.id} products={results} deleteProduct={deleteProduct} editProduct={editProduct}/>
+      <ProductList key={products.id} products={results} deleteProduct={deleteProduct} editProduct={editProduct} />
     </div>
   );
 };
