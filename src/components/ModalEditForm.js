@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { Form } from 'react-bootstrap';
 
 // ModalEditForm component displays a modal form for editing a product
-const ModalEditForm = ({show, handleClose, id, name, description, price, editProduct}) => {
+const ModalEditForm = ({show, handleClose, id, name, description, price, image, editProduct}) => {
 
   // The handleSubmit function is called when the user clicks the "Save Changes" button
   const handleSubmit = () => {
@@ -13,7 +13,8 @@ const ModalEditForm = ({show, handleClose, id, name, description, price, editPro
       id,
       name: document.getElementById('formProductName').value,
       price: document.getElementById('formPrice').value,
-      description: document.getElementById('formDescription').value
+      description: document.getElementById('formDescription').value,
+      image: "http://loremflickr.com/640/480/food"
     };
     // call editProduct function with updated data
     editProduct(id, updatedProduct);

@@ -88,7 +88,7 @@ const ProductCard = ({ product, deleteProduct, editProduct }) => {
           </div>
         </div>
       </div>
-      <ModalEditForm show={show} handleClose={handleClose} editProduct={editProduct} id={ product.id } name={product.name} price={product.price} description={product.description} />
+      <ModalEditForm show={show} handleClose={handleClose} editProduct={editProduct} id={ product.id } name={product.name} price={product.price} description={product.description} image={product.image}/>
     </>
   );
 };
