@@ -1,14 +1,9 @@
-import React from 'react';
-import { useState } from "react";
+import React, { useState } from 'react';
+import ModalEditForm from './ModalEditForm';
 
-
-export const ProductCard = ({product, deleteProduct}) => {
-
+const ProductCard = ({ product, deleteProduct, editProduct }) => {
   const [showDescription, setShowDescription] = useState(false);
   const [showButton, setShowButton] = useState(false);
-  const [showFullDetails, setShowFullDetails] = useState(false);
-
-
 
   const handleMouseEnter = () => {
     setShowDescription(true);
@@ -20,66 +15,66 @@ export const ProductCard = ({product, deleteProduct}) => {
     setShowButton(false);
   };
 
-  const handleCardClick = (event) => {
-    if (event.target.className !== 'btn btn-danger') {
-      setShowFullDetails(!showFullDetails);
-    }
-  }
-
+  //Modal
+  const [ show, setShow ] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
-    <div
-      className="card w-auto"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={handleCardClick}
-    >
-      <div className="row g-0 align-items-center">
-        <div className="col-md-3">
-          <img src={product.image} alt={product.name}  className="img-fluid" />
-        </div>
-        <div className="col-md-9 bg-secondary">
-          <div className="card-body ">
-            <div className="row g-0">
-              <div className="col-md-6 bg-success">
-                <h2 className="card-title fs-4 ps-2">{product.name}</h2>
-                <p className="card-text fs-6 ps-2">${product.price}</p>
-                  <div>
-                    {showButton && (
-                      <button
-                        className="btn btn-danger"
-                        onMouseEnter={() => setShowButton(true)}
-                        onMouseLeave={() => setShowButton(false)}
-                        onClick={() => deleteProduct(product.id)}
-                      >
-                        Detete Item
-                      </button>
-                    )}
+    <>
+      <div  className="p-3" >
+        <div
+          className="card w-auto"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleShow}
+        >
+          <div className="row g-0 align-items-center">
+            <div className="col-md-3">
+              <img src={product.image} alt={product.name}  className="img-fluid" />
+            </div>
+            <div className="col-md-9">
+              <div className="card-body ">
+                <div className="row g-0">
+                  <div className="col-md-6">
+                    <h2 className="card-title fs-4 ps-2">{product.name}</h2>
+                    <p className="card-text fs-6 ps-2">${product.price}</p>
+                    <div>
+                      {showButton && (
+                        <button
+                          className="btn btn-danger"
+                          onMouseEnter={() => setShowButton(true)}
+                          onMouseLeave={() => setShowButton(false)}
+                          onClick={() => deleteProduct(product.id)}
+                        >
+                          Delete Item
+                        </button>
+                      )}
+                    </div>
                   </div>
-              </div>
-              <div className="col-md-6 bg-warning">
-                {showDescription && (
-                <div
-                  className="description"
-                  onMouseEnter={() => setShowDescription(true)}
-                  onMouseLeave={() => setShowDescription(false)}
-                >
-                  <h3 className="card-description fs-4 ps-2">Description</h3>
-                  <p>
-                    {product.description}
-                  </p>
+                  <div className="col-md-6">
+                      {showDescription && (
+                      <div
+                        className="description"
+                        onMouseEnter={() => setShowDescription(true)}
+                        onMouseLeave={() => setShowDescription(false)}
+                      >
+                        <h3 className="card-description fs-4 ps-2">Description</h3>
+                        <p>
+                          {product.description}
+                        </p>
+                      </div>
+                        )}
+                  </div>
                 </div>
-                  )}
               </div>
             </div>
           </div>
         </div>
-              {showFullDetails && (
-                  <button className="btn btn-primary">Edit</button>
-              )}
-          </div>
-
-    </div>
+      </div>
+      <ModalEditForm show={show} handleClose={handleClose} editProduct={editProduct} id={ product.id } name={product.name} price={product.price} description={product.description} />
+    </>
   );
-}
+};
 
+export default ProductCard;

@@ -1,22 +1,16 @@
 import React from 'react';
-import { ProductCard } from './ProductCard';
-import { useProducts } from '../hooks/useProducts';
+import ProductCard from './ProductCard';
 
-export const ProductList= () => {
-
-  const { product, deleteProduct } = useProducts();
-
-  console.log(product);
-
+const ProductList = ({ products, deleteProduct, editProduct }) => {
   return (
-    <div className="row justify-content-center pt-5">
+    <div className="row justify-content-center pt-5 m-3">
       {
-        product.map( product => (
-        <div  className="p-3" key={product.id} >
-          <ProductCard product={product} deleteProduct={deleteProduct}/>
-        </div>
-      ))
+        products.map( (product) => (
+          <ProductCard key={product.id} product={product} deleteProduct={deleteProduct} editProduct={editProduct} />
+        ))
       }
     </div>
   );
-}
+};
+
+export default ProductList;
