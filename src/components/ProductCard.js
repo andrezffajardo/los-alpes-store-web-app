@@ -20,6 +20,13 @@ const ProductCard = ({ product, deleteProduct, editProduct }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const handleDelete = () => {
+    const confirm = window.confirm(`Are you sure you want to delete ${product.name}?`);
+    if (confirm) {
+      deleteProduct(product.id);
+    }
+}
+
   return (
     <>
       <div  className="p-3" >
@@ -45,7 +52,7 @@ const ProductCard = ({ product, deleteProduct, editProduct }) => {
                           className="btn btn-danger"
                           onMouseEnter={() => setShowButton(true)}
                           onMouseLeave={() => setShowButton(false)}
-                          onClick={() => deleteProduct(product.id)}
+                          onClick={handleDelete}
                         >
                           Delete Item
                         </button>
