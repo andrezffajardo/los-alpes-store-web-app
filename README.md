@@ -25,7 +25,8 @@ This project uses the following dependencies:
 - Axios: for making HTTP requests to the external API.
 - Bootstrap: for giving the application an attractive visual style.
 - React-bootstrap: for using Bootstrap components in React.
-- Make sure to have them installed before starting the application.
+
+Make sure to have them installed before starting the application.
 
 
 ## Available Scripts
