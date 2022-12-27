@@ -3,11 +3,12 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Form } from 'react-bootstrap';
 
-
+// ModalEditForm component displays a modal form for editing a product
 const ModalEditForm = ({show, handleClose, id, name, description, price, editProduct}) => {
 
+  // The handleSubmit function is called when the user clicks the "Save Changes" button
   const handleSubmit = () => {
-    // updated product data form
+    // Get the updated product data from the form
     const updatedProduct = {
       id,
       name: document.getElementById('formProductName').value,

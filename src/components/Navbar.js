@@ -1,9 +1,8 @@
 import React from 'react';
-//import { useProducts } from '../hooks/useProducts';
 
+// The Navbar component displays a navigation bar at the top of the page
 export const Navbar = ({ searcher }) => {
 
-  //const { searcher } = useProducts();
 
   return (
     <div>
@@ -20,6 +19,7 @@ export const Navbar = ({ searcher }) => {
             </div>
           </div>
           <form className="col-sm-4" role="search">
+          {/* The search input, which calls the searcher function when its value is changed */}
             <input className="form-control me-3" type="search" onChange={searcher} placeholder="Search" aria-label="Search"/>
           </form>
         </div>
