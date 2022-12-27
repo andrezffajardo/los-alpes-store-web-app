@@ -4,36 +4,36 @@ import ModalEditForm from './ModalEditForm';
 // ProductCard component displays a card for a single product
 const ProductCard = ({ product, deleteProduct, editProduct }) => {
 
-  // showDescription and showButton state variables control
-  // for show description and delete button
-  const [showDescription, setShowDescription] = useState(false);
-  const [showButton, setShowButton] = useState(false);
+// showDescription and showButton state variables control
+// for show description and delete button
+const [showDescription, setShowDescription] = useState(false);
+const [showButton, setShowButton] = useState(false);
 
-  // The handleMouseEnter and handleMouseLeave functions are
-  //called when the mouse enters or leaves the card
-  const handleMouseEnter = () => {
-    setShowDescription(true);
-    setShowButton(true);
-  };
+// The handleMouseEnter and handleMouseLeave functions are
+//called when the mouse enters or leaves the card
+const handleMouseEnter = () => {
+  setShowDescription(true);
+  setShowButton(true);
+};
 
-  const handleMouseLeave = () => {
-    setShowDescription(false);
-    setShowButton(false);
-  };
+const handleMouseLeave = () => {
+  setShowDescription(false);
+  setShowButton(false);
+};
 
-  // active Modal in ModalEditForm component
-  const [ show, setShow ] = useState(false);
-  // handleClose and handleShow functions are used to show or hide modal
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+// active Modal in ModalEditForm component
+const [ show, setShow ] = useState(false);
+// handleClose and handleShow functions are used to show or hide modal
+const handleClose = () => setShow(false);
+const handleShow = () => setShow(true);
 
-  // handleDelete function is called when the delete button is clicked
-  const handleDelete = () => {
-    // active Alert Message for confirm delete or decline delete
-    const confirm = window.confirm(`Are you sure you want to delete ${product.name}?`);
-    if (confirm) {
-      deleteProduct(product.id);
-    }
+// handleDelete function is called when the delete button is clicked
+const handleDelete = () => {
+  // active Alert Message for confirm delete or decline delete
+const confirm = window.confirm(`Are you sure you want to delete ${product.name}?`);
+  if (confirm) {
+    deleteProduct(product.id);
+  }
 }
 
   return (
